@@ -1,0 +1,9 @@
+# Peta prioritas B2, diturunkan dari kolom kelas pada Tabel 6. Dibekukan sebelum eksperimen.
+static_map:
+  tool_failure: [h2_tool_repair]
+  timeout: [h2_tool_repair]
+  tool_output_unused: [h4_handoff_completer]
+  handoff_incomplete: [h4_handoff_completer, h6_guided_rollback]
+  plan_error: [h3_replanner, h6_guided_rollback]
+  insufficient_verification: [h5_verification_reviewer]
+static_default: [h1_retry]

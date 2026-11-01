@@ -1,0 +1,22 @@
+candidates:
+- candidate_id: retry
+  version: '1'
+  description: Run the failed step again on the same agent
+  capabilities: [retry_step]
+  supported_classes: '*'
+  required_preconditions: [STEP_REPEATABLE]
+  required_host_capabilities: [retry_step]
+  max_cost: 0.2
+  max_latency_ms: 60000
+  permissions: [rerun_step]
+  verifier_id: task_completed
+- candidate_id: use_backup
+  version: '1'
+  description: Use the backup tool instead of the failing one
+  capabilities: [use_backup]
+  supported_classes: [tool_failure, timeout]
+  required_host_capabilities: [use_backup]
+  max_cost: 0.2
+  max_latency_ms: 60000
+  permissions: [call_backup]
+  verifier_id: task_completed

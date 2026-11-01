@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arclayer"
+version = "0.1.0"
+description = "Framework-agnostic recovery control layer for LLM multi-agent systems: gates recovery candidates and selects one per fault with LinUCB."
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.14,<3",
+    "SQLAlchemy>=2.1,<3",
+    "PyYAML>=6,<7",
+    "numpy>=2.5,<3",
+]
+
+[project.optional-dependencies]
+embeddings = ["sentence-transformers>=6.1,<7"]
+dev = ["pytest>=9", "pytest-cov", "hypothesis"]
+
+[tool.setuptools.packages.find]
+include = ["arclayer*"]

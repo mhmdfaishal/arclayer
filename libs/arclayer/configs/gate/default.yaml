@@ -1,0 +1,10 @@
+# allowed_permissions = gabungan izin seluruh kandidat Tabel 6.
+allowed_permissions:
+  - call_allowed_tool
+  - edit_plan
+  - inject_guidance
+  - load_checkpoint
+  - rerun_step
+  - resend_message
+  - review_answer
+n_max: 1

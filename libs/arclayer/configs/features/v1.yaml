@@ -1,0 +1,4 @@
+# Konstanta normalisasi fitur (dibekukan pada kalibrasi). Mengubahnya = versi fitur baru.
+step_cap: 20
+budget_task_cap: 3.0
+n_max: 1

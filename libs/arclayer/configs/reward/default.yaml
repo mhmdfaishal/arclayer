@@ -1,0 +1,5 @@
+# Bobot reward r = s*S - c*C - l*L - v*V. Invarian: c + l < s dan v >= s.
+s: 1
+c: 0.2
+l: 0.1
+v: 1

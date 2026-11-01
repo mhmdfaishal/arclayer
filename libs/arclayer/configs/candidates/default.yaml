@@ -1,0 +1,115 @@
+# Kandidat awal (Tabel 6). Harus identik dengan tests.factories.table6_candidates();
+# supported_classes: '*' berarti semua kelas.
+candidates:
+- candidate_id: h1_retry
+  version: '1'
+  description: Menjalankan ulang langkah gagal pada agen yang sama
+  capabilities:
+  - retry_step
+  supported_classes: '*'
+  required_preconditions:
+  - STEP_REPEATABLE
+  optional_preconditions: []
+  required_host_capabilities:
+  - retry_step
+  max_cost: 0.15
+  max_latency_ms: 60000
+  permissions:
+  - rerun_step
+  verifier_id: benchmark_task_pass
+  enabled: true
+- candidate_id: h2_tool_repair
+  version: '1'
+  description: Memperbaiki argumen atau memakai tool gratis alternatif yang diizinkan
+  capabilities:
+  - repair_tool
+  supported_classes:
+  - tool_failure
+  - timeout
+  required_preconditions:
+  - TOOL_STATUS_AVAILABLE
+  optional_preconditions: []
+  required_host_capabilities:
+  - repair_tool
+  max_cost: 0.2
+  max_latency_ms: 60000
+  permissions:
+  - call_allowed_tool
+  verifier_id: benchmark_task_pass
+  enabled: true
+- candidate_id: h3_replanner
+  version: '1'
+  description: Memperbarui rencana orchestrator secara terarah
+  capabilities:
+  - replan
+  supported_classes:
+  - plan_error
+  required_preconditions:
+  - ORCHESTRATOR_MESSAGE_ACCESS
+  optional_preconditions: []
+  required_host_capabilities:
+  - replan
+  max_cost: 0.3
+  max_latency_ms: 60000
+  permissions:
+  - edit_plan
+  verifier_id: benchmark_task_pass
+  enabled: true
+- candidate_id: h4_handoff_completer
+  version: '1'
+  description: Menyusun ulang konteks yang hilang dari state lalu mengirim ulang pesan
+  capabilities:
+  - resend_handoff
+  supported_classes:
+  - handoff_incomplete
+  - tool_output_unused
+  required_preconditions:
+  - STATE_SUMMARY_AVAILABLE
+  optional_preconditions: []
+  required_host_capabilities:
+  - resend_handoff
+  max_cost: 0.25
+  max_latency_ms: 60000
+  permissions:
+  - resend_message
+  verifier_id: benchmark_task_pass
+  enabled: true
+- candidate_id: h5_verification_reviewer
+  version: '1'
+  description: Memeriksa bukti dan menurunkan ulang jawaban sebelum diserahkan
+  capabilities:
+  - review_answer
+  supported_classes:
+  - insufficient_verification
+  required_preconditions: []
+  optional_preconditions:
+  - EVIDENCE_ARTIFACT_AVAILABLE
+  required_host_capabilities:
+  - review_answer
+  max_cost: 0.25
+  max_latency_ms: 60000
+  permissions:
+  - review_answer
+  verifier_id: benchmark_task_pass
+  enabled: true
+- candidate_id: h6_guided_rollback
+  version: '1'
+  description: Kembali ke checkpoint sebelum fault dengan panduan perbaikan satu langkah
+  capabilities:
+  - rollback
+  - guided_repair
+  supported_classes:
+  - plan_error
+  - handoff_incomplete
+  required_preconditions:
+  - CHECKPOINT_AVAILABLE
+  optional_preconditions: []
+  required_host_capabilities:
+  - rollback
+  max_cost: 0.4
+  max_latency_ms: 180000
+  permissions:
+  - load_checkpoint
+  - inject_guidance
+  verifier_id: benchmark_task_pass
+  enabled: true
